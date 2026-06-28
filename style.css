@@ -91,3 +91,16 @@ p {
     margin: 20px;
     line-height: 1.6;
 }
+.project{
+    background:white;
+    padding:20px;
+    margin:20px 0;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.project h3{
+    color:#1f2937;
+    margin-bottom:10px;
+}
+
