@@ -1,73 +1,92 @@
-body *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body */* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:Arial, sans-serif;
-    background:#f4f4f4;
-    color:#333;
-    line-height:1.6;
+/* General Styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-.hero{
-    background:#1f2937;
-    color:white;
-    text-align:center;
-    padding:100px 20px;
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
 }
 
-.hero h1{
-    font-size:3rem;
-    margin-bottom:15px;
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 
-.hero p{
-    font-size:1.3rem;
-    margin-bottom:30px;
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
 }
 
-.btn{
-    display:inline-block;
-    padding:12px 25px;
-    margin:10px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    border-radius:6px;
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background: white;
+    color: #2563eb;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-.btn.secondary{
-    background:#555;
+.btn:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
 }
 
-section{
-    max-width:900px;
-    margin:auto;
-    padding:70px 20px;
+.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
 }
 
-h2{
-    margin-bottom:20px;
-    color:#2563eb;
+.secondary:hover {
+    background: white;
+    color: #2563eb;
 }
 
-ul{
-    list-style:none;
+/* Sections */
+section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-li{
-    background:white;
-    margin:10px 0;
-    padding:15px;
-    border-radius:8px;
-}
 h2 {
-    color: #0366d6;
-    margin-left: 20px;
+    color: #2563eb;
+    margin-bottom: 20px;
 }
 
+/* Skills */
+ul {
+    list-style: none;
+}
+
+li {
+    background: #eff6ff;
+    margin: 10px 0;
+    padding: 15px;
+    border-left: 5px solid #2563eb;
+    border-radius: 6px;
+}
 p {
     margin: 20px;
     line-height: 1.6;
