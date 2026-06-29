@@ -156,3 +156,14 @@ nav {
     max-width: 600px;
     margin: 20px auto 35px;
 }
+.profile-pic{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #2563eb;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    display:block;
+    margin:20px auto;
+}
+
