@@ -219,4 +219,11 @@ li{
         width:220px;
         margin:10px auto;
     }
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
 }
