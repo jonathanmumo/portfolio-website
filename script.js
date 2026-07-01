@@ -240,16 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Prepare form data for Formspree
                 const formData = new FormData(contactForm);
                 
-                // Submit to Formspree
+                // Submit to Formspree with proper headers
                 const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
                     method: "POST",
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    body: formData
                 });
 
-                if (response.ok) {
+                if (response.ok || response.status === 200 || response.status === 201) {
                     // Success
                     statusDiv.className = "form-status success";
                     statusDiv.textContent = "✓ Message sent successfully! I'll get back to you soon.";
@@ -269,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         statusDiv.textContent = "";
                     }, 3000);
                 } else {
-                    throw new Error("Form submission failed");
+                    throw new Error(`Form submission failed with status ${response.status}`);
                 }
             } catch (error) {
                 // Error
