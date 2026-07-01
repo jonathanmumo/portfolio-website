@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedTheme === "dark") {
         document.body.classList.add("dark");
         toggleBtn.textContent = "☀️";
+        
     }
 
     // Toggle theme
@@ -21,6 +22,54 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleBtn.textContent = "🌙";
             localStorage.setItem("theme", "light");
         }
+/* =========================
+   TYPING ANIMATION
+========================= */
+
+const text = [
+    "Software Developer",
+    "Computer Science Student",
+    "Frontend Web Developer",
+    "Problem Solver"
+];
+
+let textIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typingElement = document.getElementById("typing");
+
+function typeEffect() {
+
+    const current = text[textIndex];
+
+    if (!deleting) {
+
+        typingElement.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1500);
+            return;
+        }
+
+    } else {
+
+        typingElement.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+            deleting = false;
+            textIndex = (textIndex + 1) % text.length;
+        }
+
+    }
+
+    setTimeout(typeEffect, deleting ? 60 : 120);
+}
+
+typeEffect();
     });
     
 const sections = document.querySelectorAll("section:not(#projects)");
