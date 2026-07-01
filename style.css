@@ -234,5 +234,30 @@ footer{
 .logo span{
     color:#60a5fa;
 }
-    
+/* DARK MODE VARIABLES */
+body.dark {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark nav {
+    background: #111827;
+}
+
+body.dark .project,
+body.dark section {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+/* BUTTON */
+.theme-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+}
 }
