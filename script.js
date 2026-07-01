@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
        SECTION FADE-IN
     ========================= */
 
-    const sections = document.querySelectorAll("section:not(#projects)");
+    const sections = document.querySelectorAll("section");
 
     const observer = new IntersectionObserver((entries) => {
 
