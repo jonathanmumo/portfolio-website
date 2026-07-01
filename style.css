@@ -222,37 +222,63 @@ footer{
     margin-top:50px;
 }
 
-/* =========================
+/* ===========================
    DARK MODE
-========================= */
+=========================== */
+
 body.dark{
     background:#0f172a;
     color:#e2e8f0;
+    transition:.3s;
 }
 
+/* Navigation */
 body.dark nav{
     background:#020617;
 }
 
-body.dark section,
-body.dark .project{
+/* Hero */
+body.dark .hero{
+    background:linear-gradient(135deg,#020617,#0f172a);
+}
+
+/* Sections */
+body.dark section{
     background:#1e293b;
     color:#e2e8f0;
 }
 
-body.dark section h2{
-    color:#60a5fa;
-}
-
-body.dark li{
+/* Project Cards */
+body.dark .project{
     background:#334155;
+    color:white;
+}
+
+/* Skills */
+body.dark li{
+    background:#475569;
     border-left:5px solid #60a5fa;
+    color:white;
 }
 
-body.dark footer{
-    background:#020617;
+/* Headings */
+body.dark h1,
+body.dark h2,
+body.dark h3{
+    color:white;
 }
 
+/* Paragraphs */
+body.dark p{
+    color:#cbd5e1;
+}
+
+/* Links */
+body.dark a{
+    color:#93c5fd;
+}
+
+/* Buttons */
 body.dark .btn{
     background:#2563eb;
     color:white;
@@ -264,11 +290,28 @@ body.dark .secondary{
     color:white;
 }
 
-body.dark .secondary:hover{
-    background:white;
-    color:#2563eb;
+/* Footer */
+body.dark footer{
+    background:#020617;
+    color:white;
 }
 
+/* Theme Button */
+.theme-btn{
+    background:transparent;
+    border:2px solid white;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.theme-btn:hover{
+    background:white;
+    color:#111827;
+}
 /* =========================
    RESPONSIVE
 ========================= */
