@@ -260,4 +260,16 @@ body.dark section {
     cursor: pointer;
     margin-left: 10px;
 }
+.hero-content h1 {
+    font-size: 3.2rem;
+    white-space: nowrap;
+}
+
+/* allow wrapping on small screens */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        white-space: normal;
+        font-size: 2.2rem;
+    }
+}
 }
