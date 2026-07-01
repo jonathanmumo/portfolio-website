@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-const sections = document.querySelectorAll("section");
+const sections = document.querySelectorAll("section:not(#projects)");
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -38,4 +38,33 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => {
     observer.observe(section);
 });
+const projects = document.querySelectorAll(".project");
+
+const projectObserver = new IntersectionObserver((entries, observer) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            projects.forEach((project, index) => {
+
+                setTimeout(() => {
+                    project.classList.add("show");
+                }, index * 200);
+
+            });
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold:0.2
+});
+
+const projectSection = document.querySelector("#projects");
+
+projectObserver.observe(projectSection);
 });
