@@ -84,13 +84,11 @@ nav{
 }
 
 /* Hero Text */
-.hero-content{
-    max-width:650px;
-}
+.hero-content h1{
+    font-size: 3.5rem;
+    white-space: nowrap;
+    margin-bottom: 20px;
 
-.hero h1{
-    font-size:4rem;
-    margin-bottom:20px;
 }
 
 .hero h2{
