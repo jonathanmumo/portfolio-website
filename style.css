@@ -14,15 +14,12 @@ html{
 /* =========================
    BODY
 ========================= */
-body
-{
+body{
     font-family:Arial, Helvetica, sans-serif;
     background:#f4f6f9;
     color:#333;
     line-height:1.6;
-    transition:background-color .4s ease,
-               color .4s ease;
-
+    transition:background-color .4s ease, color .4s ease;
 }
 
 /* =========================
@@ -55,23 +52,29 @@ nav{
     gap:30px;
 }
 
-.nav-links li{
-    background:none;
-    border:none;
-    padding:0;
-    margin:0;
-}
-
 .nav-links a{
     color:#fff;
     text-decoration:none;
     font-size:1.1rem;
     font-weight:bold;
-    transition:.3s;
+    position:relative;
+    transition:color .3s ease;
 }
 
-.nav-links a:hover{
-    color:#60a5fa;
+/* underline animation */
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:2px;
+    background:#60a5fa;
+    transition:width .3s ease;
+}
+
+.nav-links a:hover::after{
+    width:100%;
 }
 
 /* =========================
@@ -84,7 +87,8 @@ nav{
     padding:8px 12px;
     border-radius:8px;
     cursor:pointer;
-    transition:0.3s;
+    font-size:18px;
+    transition:.3s;
 }
 
 .theme-btn:hover{
@@ -114,6 +118,12 @@ nav{
     object-fit:contain;
     background:transparent;
     flex-shrink:0;
+    transition:transform .4s ease, box-shadow .4s ease;
+}
+
+.profile-pic:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
 }
 
 .hero-content h1{
@@ -146,11 +156,11 @@ nav{
     text-decoration:none;
     font-weight:bold;
     border-radius:8px;
-    transition:.3s;
+    transition:all .3s ease;
 }
 
 .btn:hover{
-    transform:translateY(-3px);
+    transform:translateY(-4px) scale(1.03);
 }
 
 .secondary{
@@ -174,7 +184,15 @@ section{
     background:white;
     border-radius:12px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
-    transition:.3s;
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 section h2{
@@ -206,8 +224,15 @@ li{
     margin:20px 0;
     border-radius:12px;
     box-shadow:0 4px 12px rgba(0,0,0,.1);
-    transition:transform .35s ease,
-               box-shadow .35s ease;
+
+    opacity:0;
+    transform:translateY(30px);
+    transition:all .6s ease;
+}
+
+.project.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .project:hover{
@@ -226,63 +251,59 @@ footer{
     margin-top:50px;
 }
 
-/* ===========================
+/* =========================
    DARK MODE
-=========================== */
-
+========================= */
 body.dark{
     background:#0f172a;
     color:#e2e8f0;
-    transition:.3s;
 }
 
-/* Navigation */
+/* nav */
 body.dark nav{
     background:#020617;
 }
 
-/* Hero */
+/* hero */
 body.dark .hero{
     background:linear-gradient(135deg,#020617,#0f172a);
 }
 
-/* Sections */
+/* sections */
 body.dark section{
     background:#1e293b;
     color:#e2e8f0;
 }
 
-/* Project Cards */
+/* projects */
 body.dark .project{
     background:#334155;
     color:white;
 }
 
-/* Skills */
+/* skills */
 body.dark li{
     background:#475569;
     border-left:5px solid #60a5fa;
     color:white;
 }
 
-/* Headings */
+/* text */
 body.dark h1,
 body.dark h2,
 body.dark h3{
     color:white;
 }
 
-/* Paragraphs */
 body.dark p{
     color:#cbd5e1;
 }
 
-/* Links */
 body.dark a{
     color:#93c5fd;
 }
 
-/* Buttons */
+/* buttons */
 body.dark .btn{
     background:#2563eb;
     color:white;
@@ -294,32 +315,11 @@ body.dark .secondary{
     color:white;
 }
 
-/* Footer */
+/* footer */
 body.dark footer{
     background:#020617;
-    color:white;
 }
 
-/* Theme Button */
-.theme-btn{
-    background:transparent;
-    border:2px solid white;
-    color:white;
-    padding:8px 12px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:18px;
-    transition:.3s;
-}
-
-.btn{
-    transition:all .3s ease;
-}
-
-.btn:hover{
-    transform:translateY(-4px) scale(1.03);
-
-}
 /* =========================
    RESPONSIVE
 ========================= */
@@ -330,38 +330,16 @@ body.dark footer{
         gap:15px;
     }
 
-    .nav-links a{
-    position:relative;
-    transition:color .3s ease;
-}
-
-.nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0;
-    height:2px;
-    background:#60a5fa;
-    transition:width .3s ease;
-}
-
-.nav-links a:hover::after{
-    width:100%;
-}
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+        padding:60px 20px;
+    }
 
     .profile-pic{
         width:260px;
         height:260px;
-.profile-pic{
-    transition:transform .4s ease,
-               box-shadow .4s ease;
-}
-
-.profile-pic:hover{
-    transform:scale(1.05);
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-
     }
 
     .hero-content h1{
@@ -382,15 +360,4 @@ body.dark footer{
         width:220px;
         margin:10px auto;
     }
-section{
-    opacity:0;
-    transform:translateY(40px);
-    transition:opacity .8s ease,
-               transform .8s ease;
-}
-
-section.show{
-    opacity:1;
-    transform:translateY(0);
-
 }
