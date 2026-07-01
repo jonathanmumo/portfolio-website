@@ -139,4 +139,149 @@ document.addEventListener("DOMContentLoaded", () => {
         projectObserver.observe(projectSection);
     }
 
+    /* =========================
+       CONTACT FORM VALIDATION & FORMSPREE
+    ========================= */
+
+    const contactForm = document.getElementById("contactForm");
+    
+    if (contactForm) {
+        // Configure Formspree form ID (replace with your actual form ID)
+        const FORMSPREE_FORM_ID = "xyzjkpaw"; // You'll update this with your Formspree ID
+
+        // Form field validators
+        const validators = {
+            name: (value) => {
+                if (!value.trim()) return "Name is required";
+                if (value.trim().length < 2) return "Name must be at least 2 characters";
+                return "";
+            },
+            email: (value) => {
+                if (!value.trim()) return "Email is required";
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) return "Please enter a valid email";
+                return "";
+            },
+            subject: (value) => {
+                if (!value.trim()) return "Subject is required";
+                if (value.trim().length < 3) return "Subject must be at least 3 characters";
+                return "";
+            },
+            message: (value) => {
+                if (!value.trim()) return "Message is required";
+                if (value.trim().length < 10) return "Message must be at least 10 characters";
+                return "";
+            }
+        };
+
+        // Real-time validation
+        Object.keys(validators).forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (field) {
+                field.addEventListener("blur", () => validateField(fieldName));
+                field.addEventListener("input", () => {
+                    const formGroup = field.parentElement;
+                    if (formGroup.classList.contains("error")) {
+                        validateField(fieldName);
+                    }
+                });
+            }
+        });
+
+        // Validate single field
+        function validateField(fieldName) {
+            const field = document.getElementById(fieldName);
+            const errorElement = document.getElementById(fieldName + "Error");
+            const formGroup = field.parentElement;
+            const error = validators[fieldName](field.value);
+
+            if (error) {
+                formGroup.classList.add("error");
+                errorElement.textContent = error;
+                return false;
+            } else {
+                formGroup.classList.remove("error");
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        // Validate entire form
+        function validateForm() {
+            let isValid = true;
+            Object.keys(validators).forEach(fieldName => {
+                if (!validateField(fieldName)) {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        }
+
+        // Handle form submission
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            const submitBtn = contactForm.querySelector(".form-btn");
+            const statusDiv = document.getElementById("formStatus");
+            const originalBtnText = submitBtn.textContent;
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+            statusDiv.className = "";
+            statusDiv.textContent = "";
+
+            try {
+                // Prepare form data for Formspree
+                const formData = new FormData(contactForm);
+                
+                // Submit to Formspree
+                const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    statusDiv.className = "form-status success";
+                    statusDiv.textContent = "✓ Message sent successfully! I'll get back to you soon.";
+                    contactForm.reset();
+                    
+                    // Clear error states
+                    Object.keys(validators).forEach(fieldName => {
+                        const formGroup = document.getElementById(fieldName).parentElement;
+                        formGroup.classList.remove("error");
+                    });
+
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                        statusDiv.className = "";
+                        statusDiv.textContent = "";
+                    }, 3000);
+                } else {
+                    throw new Error("Form submission failed");
+                }
+            } catch (error) {
+                // Error
+                statusDiv.className = "form-status error";
+                statusDiv.textContent = "✗ Error sending message. Please try again or email me directly.";
+                console.error("Form error:", error);
+
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
+        });
+    }
+
 });
