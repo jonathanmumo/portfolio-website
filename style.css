@@ -142,6 +142,19 @@ nav{
     font-size:1.25rem;
     line-height:1.8;
     margin-bottom:35px;
+#typing{
+    color:white;
+    font-weight:500;
+    border-right:3px solid #60a5fa;
+    padding-right:5px;
+    animation:blink .7s infinite;
+}
+
+@keyframes blink{
+    50%{
+        border-color:transparent;
+    }
+
 }
 
 /* =========================
