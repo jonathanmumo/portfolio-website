@@ -1,22 +1,30 @@
-/* Reset */
+/* =========================
+   RESET
+========================= */
 html{
     scroll-behavior:smooth;
 }
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* Body */
+/* =========================
+   BODY
+========================= */
 body{
     font-family:Arial, Helvetica, sans-serif;
     background:#f4f6f9;
     color:#333;
     line-height:1.6;
+    transition:0.3s ease;
 }
 
-/* Navigation */
+/* =========================
+   NAVIGATION
+========================= */
 nav{
     background:#111827;
     color:#fff;
@@ -32,6 +40,10 @@ nav{
 .logo{
     font-size:2rem;
     font-weight:bold;
+}
+
+.logo span{
+    color:#60a5fa;
 }
 
 .nav-links{
@@ -59,10 +71,30 @@ nav{
     color:#60a5fa;
 }
 
-/* Hero */
+/* =========================
+   THEME BUTTON
+========================= */
+.theme-btn{
+    background:transparent;
+    border:2px solid white;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.theme-btn:hover{
+    background:white;
+    color:#111827;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
 .hero{
     background:linear-gradient(135deg,#1e3a8a,#2563eb);
-    color:#fff;
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -71,45 +103,42 @@ nav{
     min-height:90vh;
 }
 
-/* Profile Image */
 .profile-pic{
     width:330px;
     height:330px;
     border-radius:50%;
-    border:6px solid #fff;
+    border:6px solid white;
     object-fit:contain;
-    object-position:center;
     background:transparent;
     flex-shrink:0;
 }
 
-/* Hero Text */
 .hero-content h1{
-    font-size: 3.5rem;
-    white-space: nowrap;
-    margin-bottom: 20px;
-
+    font-size:3.2rem;
+    white-space:nowrap;
+    margin-bottom:20px;
 }
 
-.hero h2{
-    color:#fff;
+.hero-content h2{
     font-size:2rem;
     font-weight:400;
     margin-bottom:25px;
 }
 
-.hero p{
+.hero-content p{
     font-size:1.25rem;
-    margin-bottom:35px;
     line-height:1.8;
+    margin-bottom:35px;
 }
 
-/* Buttons */
+/* =========================
+   BUTTONS
+========================= */
 .btn{
     display:inline-block;
     padding:15px 30px;
     margin-right:15px;
-    background:#fff;
+    background:white;
     color:#2563eb;
     text-decoration:none;
     font-weight:bold;
@@ -123,23 +152,26 @@ nav{
 
 .secondary{
     background:transparent;
-    color:#fff;
-    border:2px solid #fff;
+    color:white;
+    border:2px solid white;
 }
 
 .secondary:hover{
-    background:#fff;
+    background:white;
     color:#2563eb;
 }
 
-/* Sections */
+/* =========================
+   SECTIONS
+========================= */
 section{
     max-width:1000px;
     margin:50px auto;
     padding:35px;
-    background:#fff;
+    background:white;
     border-radius:12px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.3s;
 }
 
 section h2{
@@ -147,7 +179,9 @@ section h2{
     margin-bottom:20px;
 }
 
-/* Skills */
+/* =========================
+   SKILLS
+========================= */
 ul{
     list-style:none;
 }
@@ -160,14 +194,16 @@ li{
     border-radius:6px;
 }
 
-/* Projects */
+/* =========================
+   PROJECTS
+========================= */
 .project{
-    background:#fff;
+    background:white;
     padding:20px;
     margin:20px 0;
     border-radius:12px;
     box-shadow:0 4px 12px rgba(0,0,0,.1);
-    transition:transform .3s ease, box-shadow .3s ease;
+    transition:.3s;
 }
 
 .project:hover{
@@ -175,7 +211,67 @@ li{
     box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-/* Responsive */
+/* =========================
+   FOOTER
+========================= */
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+body.dark{
+    background:#0f172a;
+    color:#e2e8f0;
+}
+
+body.dark nav{
+    background:#020617;
+}
+
+body.dark section,
+body.dark .project{
+    background:#1e293b;
+    color:#e2e8f0;
+}
+
+body.dark section h2{
+    color:#60a5fa;
+}
+
+body.dark li{
+    background:#334155;
+    border-left:5px solid #60a5fa;
+}
+
+body.dark footer{
+    background:#020617;
+}
+
+body.dark .btn{
+    background:#2563eb;
+    color:white;
+}
+
+body.dark .secondary{
+    background:transparent;
+    border:2px solid white;
+    color:white;
+}
+
+body.dark .secondary:hover{
+    background:white;
+    color:#2563eb;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width:900px){
 
     nav{
@@ -192,24 +288,8 @@ li{
     .hero{
         flex-direction:column;
         text-align:center;
-        padding:60px 20px;
         gap:40px;
-    }
-
-    .hero-content{
-        max-width:100%;
-    }
-
-    .hero h1{
-        font-size:3rem;
-    }
-
-    .hero h2{
-        font-size:1.8rem;
-    }
-
-    .hero p{
-        font-size:1.1rem;
+        padding:60px 20px;
     }
 
     .profile-pic{
@@ -217,57 +297,22 @@ li{
         height:260px;
     }
 
+    .hero-content h1{
+        font-size:2.3rem;
+        white-space:normal;
+    }
+
+    .hero-content h2{
+        font-size:1.8rem;
+    }
+
+    .hero-content p{
+        font-size:1.1rem;
+    }
+
     .btn{
         display:block;
         width:220px;
         margin:10px auto;
     }
-footer{
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:25px;
-    margin-top:50px;
-}
-.logo span{
-    color:#60a5fa;
-}
-/* DARK MODE VARIABLES */
-body.dark {
-    background: #0f172a;
-    color: #e2e8f0;
-}
-
-body.dark nav {
-    background: #111827;
-}
-
-body.dark .project,
-body.dark section {
-    background: #1e293b;
-    color: #e2e8f0;
-}
-
-/* BUTTON */
-.theme-btn {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-.hero-content h1 {
-    font-size: 3.2rem;
-    white-space: nowrap;
-}
-
-/* allow wrapping on small screens */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        white-space: normal;
-        font-size: 2.2rem;
-    }
-}
 }
