@@ -78,6 +78,59 @@ nav{
 }
 
 /* =========================
+   NAV INFO & TIME DISPLAY
+========================= */
+.nav-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.time-display{
+    font-size:1rem;
+    font-weight:bold;
+    color:#60a5fa;
+    min-width:60px;
+    text-align:right;
+}
+
+/* =========================
+   INFO WIDGET
+========================= */
+.info-widget{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:15px 8%;
+    text-align:center;
+    font-size:0.95rem;
+    font-weight:500;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.widget-content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+#locationIcon,
+#timeIcon{
+    font-size:1.1rem;
+}
+
+#locationText,
+#fullTimeDisplay{
+    color:#e0e7ff;
+}
+
+.separator{
+    color:#60a5fa;
+    font-weight:bold;
+}
+
+/* =========================
    THEME BUTTON
 ========================= */
 .theme-btn{
@@ -396,16 +449,31 @@ body.dark{
 
 /* nav */
 body.dark nav{
-    background:#020617;}
+    background:#020617;
+}
+
 body.dark .nav-links a{
     color:white;
 }
 
 body.dark .nav-links a:hover{
     color:#60a5fa;
-
-
 }
+
+body.dark .time-display{
+    color:#60a5fa;
+}
+
+/* info widget dark mode */
+body.dark .info-widget{
+    background:linear-gradient(135deg,#020617,#0f172a);
+}
+
+body.dark #locationText,
+body.dark #fullTimeDisplay{
+    color:#cbd5e1;
+}
+
 /* hero */
 body.dark .hero{
     background:linear-gradient(135deg,#020617,#0f172a);
@@ -443,7 +511,6 @@ body.dark p{
 
 body.dark section a{
     color:#93c5fd;
-
 }
 
 /* buttons */
@@ -508,6 +575,11 @@ body.dark footer{
         gap:15px;
     }
 
+    .nav-info{
+        width:100%;
+        justify-content:space-between;
+    }
+
     .hero{
         flex-direction:column;
         text-align:center;
@@ -546,5 +618,31 @@ body.dark footer{
     .form-btn{
         width:100%;
         align-self:stretch;
+    }
+
+    .info-widget{
+        padding:12px 4%;
+        font-size:0.85rem;
+    }
+
+    .widget-content{
+        flex-direction:column;
+        gap:5px;
+    }
+}
+
+@media (max-width:600px){
+    .time-display{
+        min-width:50px;
+        font-size:0.9rem;
+    }
+
+    .widget-content{
+        font-size:0.8rem;
+    }
+
+    #locationIcon,
+    #timeIcon{
+        font-size:1rem;
     }
 }
