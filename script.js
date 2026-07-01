@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.getElementById("contactForm");
     
     if (contactForm) {
-        // Configure Formspree form ID (replace with your actual form ID)
-        const FORMSPREE_FORM_ID = "xyzjkpaw"; // You'll update this with your Formspree ID
+        // Configure Formspree form ID
+        const FORMSPREE_FORM_ID = "meebrapj";
 
         // Form field validators
         const validators = {
