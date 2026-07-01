@@ -29,6 +29,109 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =========================
+       REAL-TIME CLOCK
+    ========================= */
+    function updateClock() {
+        const timeDisplay = document.getElementById("timeDisplay");
+        const fullTimeDisplay = document.getElementById("fullTimeDisplay");
+        
+        if (timeDisplay || fullTimeDisplay) {
+            const now = new Date();
+            
+            // Format time HH:MM:SS
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            // Format full date and time
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const fullTimeString = now.toLocaleDateString('en-US', options);
+            
+            if (timeDisplay) timeDisplay.textContent = timeString;
+            if (fullTimeDisplay) fullTimeDisplay.textContent = fullTimeString;
+        }
+    }
+
+    // Update clock immediately and then every second
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    /* =========================
+       GEOLOCATION
+    ========================= */
+    function getLocation() {
+        const locationText = document.getElementById("locationText");
+        
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    
+                    // Use reverse geocoding to get location name
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let locationName = "Location Unknown";
+                            
+                            if (data.address) {
+                                const address = data.address;
+                                // Try to get city, then town, then village
+                                locationName = address.city || address.town || address.village || address.county || "Kenya";
+                            }
+                            
+                            if (locationText) {
+                                locationText.textContent = locationName;
+                            }
+                        })
+                        .catch(error => {
+                            console.log("Reverse geocoding failed:", error);
+                            if (locationText) {
+                                locationText.textContent = `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`;
+                            }
+                        });
+                },
+                (error) => {
+                    console.log("Geolocation error:", error);
+                    // Fallback to IP-based location
+                    getLocationFromIP();
+                },
+                {
+                    enableHighAccuracy: false,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            // Geolocation not supported, try IP-based location
+            getLocationFromIP();
+        }
+    }
+
+    // Fallback: Get location from IP
+    function getLocationFromIP() {
+        const locationText = document.getElementById("locationText");
+        
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                if (locationText && data.city) {
+                    locationText.textContent = `${data.city}, ${data.country_name}`;
+                }
+            })
+            .catch(error => {
+                console.log("IP-based location failed:", error);
+                if (locationText) {
+                    locationText.textContent = "Kenya";
+                }
+            });
+    }
+
+    // Get location on page load
+    getLocation();
+
+    /* =========================
        TYPING ANIMATION
     ========================= */
 
